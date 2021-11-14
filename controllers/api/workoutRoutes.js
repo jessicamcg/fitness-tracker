@@ -3,7 +3,11 @@ const Workout = require("../../models/Workout.js");
 
 router.get("/", (req, res) => {
 	
-    Workout.find({})
+    Workout.aggregate([{
+        $addFields:{
+            totalDuration: { $sum: "$exercises.duration"},
+        },
+    }])
 	.then((workoutData) => {
 	   res.json(workoutData);
 	})
@@ -11,7 +15,6 @@ router.get("/", (req, res) => {
        res.status(400).json(err);
 	});
 });
-
 
 router.put("/:id", (req, res) => {
    	
@@ -24,7 +27,6 @@ router.put("/:id", (req, res) => {
 	});
 });  
 
-
 router.post("/", ({ body }, res) => {
        
     Workout.create(body)
@@ -35,7 +37,6 @@ router.post("/", ({ body }, res) => {
        res.status(400).json(err);
     });
 });
-
 
 router.get("/range", (req, res) => {
 
