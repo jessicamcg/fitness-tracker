@@ -16,7 +16,6 @@ router.get("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-   	
     Workout.findByIdAndUpdate({_id: req.params.id}, {$push: {"exercises": req.body}})
     .then((workoutData) => {
 	    res.json(workoutData);
@@ -27,7 +26,6 @@ router.put("/:id", (req, res) => {
 });  
 
 router.post("/", ({ body }, res) => {
-       
     Workout.create(body)
     .then(workoutData => {
        res.json(workoutData);
@@ -38,7 +36,6 @@ router.post("/", ({ body }, res) => {
 });
 
 router.get("/range", (req, res) => {
-
     Workout.aggregate([{
         $addFields: {
             totalDuration: { $sum: "$exercises.duration"},
@@ -47,7 +44,6 @@ router.get("/range", (req, res) => {
     .then((workoutData) => {
 	   res.json(workoutData);
 	})
-	  
     .catch(err => {
        res.status(400).json(err);
 	});
