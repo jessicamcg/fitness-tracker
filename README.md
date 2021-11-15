@@ -20,3 +20,7 @@ npm start
 ```
 
 ## Live Link
+[heroku](https://limitless-falls-48980.herokuapp.com/)
+
+![homepage](https://github.com/jessicamcg/fitness-tracker/blob/main/assets/homepage.png)
+![dashboard](https://github.com/jessicamcg/fitness-tracker/blob/main/assets/dashboard.png)
